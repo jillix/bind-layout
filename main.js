@@ -84,7 +84,7 @@ define(["adioo/bind/bind"], function(Bind) {
                 
                 for (var selector in config.modules) {
                     
-                    N.mod(selector, config.modules[selector]);
+                    N.mod(this.$.querySelector("#" + selector), config.modules[selector]);
                 }
             }
             
