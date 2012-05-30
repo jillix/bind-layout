@@ -73,48 +73,47 @@ define(["adioo/bind/bind"], function(Bind) {
         }
     };
     
-    return {
+    function init(config) {
         
-        init: function(config) {
+        var layout = N.clone(Layout, this);
+        
+        //load modules
+        if (config.modules) {
             
-            var layout = N.clone(Layout);
-            
-            //load modules
-            if (config.modules) {
+            for (var selector in config.modules) {
                 
-                for (var selector in config.modules) {
-                    
-                    N.mod(this.$.querySelector("#" + selector), config.modules[selector]);
-                }
-            }
-            
-            //set document title
-            if (config.title) {
-                
-                document.title = config.title;
-            }
-            
-            //bind data
-            if (config.source || config.data) {
-                
-                var bind = Bind({elm: this.$, scope: layout});
-                
-                if (config.data) {
-                    
-                    bind(config.data);
-                }
-                
-                if (config.source) {
-                
-                    N.link(config.source, function(err, result) {
-                        
-                        if (!err && result) {
-                            
-                            bind(result);
-                        }
-                    });
-                }
+                N.mod(this.dom.querySelector("#" + selector), config.modules[selector]);
             }
         }
-    };
+        
+        //set document title
+        if (config.title) {
+            
+            document.title = config.title;
+        }
+        
+        //bind data
+        if (config.source || config.data) {
+            
+            var bind = Bind({elm: this.dom, scope: layout});
+            
+            if (config.data) {
+                
+                bind(config.data);
+            }
+            
+            if (config.source) {
+            
+                layout.link(config.source, function(err, result) {
+                    
+                    if (!err && result) {
+                        
+                        bind(result);
+                    }
+                });
+            }
+        }
+    }
+    
+    return init;
 });
