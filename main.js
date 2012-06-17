@@ -75,7 +75,7 @@ define(["adioo/bind/bind"], function(Bind) {
     
     function init(config) {
         
-        var layout = N.clone(Layout, this);
+        var layout = N.ext(Layout, Bind(this));
         
         //load modules
         if (config.modules) {
