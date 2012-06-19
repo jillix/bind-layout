@@ -75,40 +75,40 @@ define(["adioo/bind/bind"], function(Bind) {
     
     function init(config) {
         
+        this.conf = config;
+        
         var layout = N.ext(Layout, Bind(this));
         
         //load modules
-        if (config.modules) {
+        if (layout.conf.modules) {
             
-            for (var selector in config.modules) {
+            for (var selector in layout.conf.modules) {
                 
-                N.mod(this.dom.querySelector("#" + selector), config.modules[selector]);
+                N.mod(this.dom.querySelector("#" + selector), layout.conf.modules[selector]);
             }
         }
         
         //set document title
-        if (config.title) {
+        if (layout.conf.title) {
             
-            document.title = config.title;
+            document.title = layout.conf.title;
         }
         
         //bind data
-        if (config.source || config.data) {
+        if (layout.conf.source || layout.conf.data) {
             
-            var bind = Bind({elm: this.dom, scope: layout});
-            
-            if (config.data) {
+            if (layout.conf.data) {
                 
-                bind(config.data);
+                layout.bind(layout.conf.data);
             }
             
-            if (config.source) {
+            if (layout.conf.source) {
             
-                layout.link(config.source, function(err, result) {
+                layout.link(layout.conf.source, function(err, result) {
                     
                     if (!err && result) {
                         
-                        bind(result);
+                        layout.bind(result);
                     }
                 });
             }
