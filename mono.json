@@ -4,6 +4,6 @@
     "name": "layout",
     "main": "main.js",
     "dependencies": {
-        github/adioo/bind": "bf98a5b73189be6c4670d97f97fc46f7d62d543a"
+        "github/adioo/bind": "bf98a5b73189be6c4670d97f97fc46f7d62d543a"
     }
 }
