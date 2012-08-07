@@ -54,7 +54,7 @@ config = {
 }
 */
         
-define(["github/adioo/bind/latest/bind"], function(Bind) {
+define(["github/adioo/bind/6370c634636f5bd669f10bb27dd03a64629c3f95/bind"], function(Bind) {
     
     var Layout = {
         
