@@ -18,7 +18,7 @@ config = {
 */
 "use strict";
 
-define(["github/adioo/bind/v0.1.0/bind"], function(bind) {
+define(["github/adioo/bind/v0.1.1/bind"], function(bind) {
     
     return function(config) {
         
