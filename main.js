@@ -13,107 +13,47 @@ config = {
         path: "",
         data: {}
     },
-    bind: [
-        {
-            val: "Logout",
-            query: "#logout"
-            events: {
-                
-                mouseup: {
-                    
-                    method: "logout",
-                    args: ["/route/to/public/page"]
-                }
-            }
-        },
-        {
-            val: "DE",
-            query: "#i18n_de"
-            events: {
-                
-                mouseup: {
-                    
-                    method: "i18n",
-                    args: ["de"]
-                }
-            }
-        },
-        {
-            val: "EN",
-            query: "#i18n_en"
-            events: {
-                
-                mouseup: {
-                    
-                    method: "i18n",
-                    args: ["en"]
-                }
-            }
-        }
-    ]
+    bind: [BIND_OBJECT]
 }
 */
-        
-define(["github/adioo/bind/v0.0.1/bind"], function(Bind) {
+"use strict";
+
+define(["github/adioo/bind/v0.1.0/bind"], function(bind) {
     
-    var Layout = {
+    return function(config) {
         
-        i18n: function(locale) {
-            
-            N.obs("i18n").f("change", locale);
-            // TODO fetch own data
-        },
-        
-        logout: function(route) {
-            
-            N.logout(function() {
-                
-                window.location(route || "/");
-            });
-        }
-    };
-    
-    function init(config) {
-        
-        this.conf = config;
-        
-        var layout = N.ext(Layout, Bind(this));
+        var target = this && this.dom ? this.dom : document;
         
         //load modules
-        if (layout.conf.modules) {
+        if (config.modules) {
             
-            for (var selector in layout.conf.modules) {
+            for (var selector in config.modules) {
                 
-                N.mod(this.dom.querySelector("#" + selector), layout.conf.modules[selector]);
+                M(target.querySelector("#" + selector), config.modules[selector]);
             }
         }
         
         //set document title
-        if (layout.conf.title) {
+        if (config.title) {
             
-            document.title = layout.conf.title;
+            document.title = config.title;
         }
         
         //bind data
-        if (layout.conf.source || layout.conf.data) {
+        if (config.data) {
             
-            if (layout.conf.data) {
-                
-                layout.bind(layout.conf.data);
-            }
-            
-            if (layout.conf.source) {
-            
-                layout.link(layout.conf.source, function(err, result) {
-                    
-                    if (!err && result) {
-                        
-                        layout.bind(result);
-                    }
-                });
-            }
+            bind.call(this, config.data, null, target);
         }
-    }
-    
-    return init;
+        
+        if (config.source) {
+            
+            this.link(config.source, function(err, result) {
+                
+                if (!err && result) {
+                    
+                    bind(result, null, target);
+                }
+            });
+        }
+    };
 });
