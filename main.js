@@ -24,6 +24,57 @@ define(["github/adioo/bind/v0.1.1/bind"], function(bind) {
         
         var target = this && this.dom ? this.dom : document;
         
+        // load css
+        if (config.css) {
+            
+            // get head reference
+            var head = document.getElementsByTagName("head")[0];
+            
+            for (var i in config.css) {
+                
+                var href;
+                
+                if (config.css[i].indexOf("http") > -1) {
+                    
+                    href = config.css[i];
+                }
+                else {
+                    
+                    href = this.ok + "/core/getFile" + (config.css[i][0] == "/" ? "" : "/") + config.css[i]
+                }
+                
+                // create link and append it to the DOM
+                var link = document.createElement("link");
+                var attributes = {
+                        rel:    "stylesheet",
+                        type:   "text/css",
+                        href:   href
+                    };
+                    
+                for (var name in attributes) {
+                    
+                    link.setAttribute(name, attributes[name]);
+                }
+                
+                head.appendChild(link);
+            }
+        }
+        
+        if (config.html && target) {
+            
+            // create module container
+            var container = document.createElement("div");
+            
+            // add miid to html
+            container.setAttribute("id", this.miid);
+            
+            // add html
+            container.innerHTML = config.html;
+            
+            // append module to the dom
+            target.appendChild(container);
+        }
+        
         //load modules
         if (config.modules) {
             
