@@ -1,25 +1,40 @@
 /*
 config = {
     
-    title: "Test Title",
-    modules: {
-        
-        'idOfDomElement1': "miid",
-        'idOfDomElement2': "miid"
+    "title": "Test Title",
+
+    "modules": {
+        "domElemId1": "miid1",
+        "domElemId2": ["miid2", "alternativeMiid", "errorMiid"]
     },
-    source: {
-    
-        name: "operationName",
-        path: "",
-        data: {}
+
+    "source": {
+        "name": "operationName",
+        "path": "",
+        "data": {}
     },
-    bind: [BIND_OBJECT]
+
+    "bind": [BIND_OBJECT]
 }
 */
 "use strict";
 
 define(["github/adioo/bind/v0.1.1/bind"], function(bind) {
     
+    // a recursive function until a module
+    function tryNextModule(miids, index, container) {
+        // stop when no more modules
+        if (!miids[index]) {
+            return;
+        }
+        // otherwise go and try to load the module
+        M(container, miids[index], function(err, module) {
+            if (err) {
+                tryNextModule(miids, ++index, container);
+            }
+        });
+    }
+
     return function(config) {
         
         var target = this && this.dom ? this.dom : document;
@@ -60,37 +75,28 @@ define(["github/adioo/bind/v0.1.1/bind"], function(bind) {
             }
         }
         
-        if (config.html && target) {
-            
-            // create module container
-            var container = document.createElement("div");
-            
-            // add miid to html
-            container.setAttribute("id", this.miid);
-            
-            // add html
-            container.innerHTML = config.html;
-            
-            // append module to the dom
-            target.appendChild(container);
-        }
-        
-        //load modules
-        if (config.modules) {
-            
-            for (var selector in config.modules) {
-                
-                M(target.querySelector("#" + selector), config.modules[selector]);
+        // load modules
+        for (var selector in config.modules) {
+
+            var modules = config.modules[selector];
+            var container = target.querySelector("#" + selector);
+
+            if (typeof modules === "string") {
+                M(container, modules);
+            }
+            // assuming an array
+            else if (modules.length) {
+                // start finding the first accessible miid in the module array
+                tryNextModule(modules, 0, container);
             }
         }
         
-        //set document title
+        // set document title
         if (config.title) {
-            
             document.title = config.title;
         }
-        
-        //bind data
+
+        // bind data
         if (config.data) {
             
             bind.call(this, config.data, null, target);
