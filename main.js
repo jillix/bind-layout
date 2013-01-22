@@ -8,19 +8,13 @@ config = {
         "domElemId2": ["miid2", "alternativeMiid", "errorMiid"]
     },
 
-    "source": {
-        "name": "operationName",
-        "path": "",
-        "data": {}
-    },
-
-    "bind": [BIND_OBJECT]
+    "binds": [BIND_OBJECT]
 }
 */
 "use strict";
 
-define(["github/adioo/bind/v0.1.1/bind"], function(bind) {
-    
+define(["github/adioo/bind/v0.2.1/bind"], function(Bind) {
+
     // a recursive function until a module
     function tryNextModule(miids, index, container) {
         // stop when no more modules
@@ -96,21 +90,10 @@ define(["github/adioo/bind/v0.1.1/bind"], function(bind) {
             document.title = config.title;
         }
 
-        // bind data
-        if (config.data) {
-            
-            bind.call(this, config.data, null, target);
-        }
-        
-        if (config.source) {
-            
-            this.link(config.source, function(err, result) {
-                
-                if (!err && result) {
-                    
-                    bind(result, null, target);
-                }
-            });
+        // run the binds
+        for (var i in config.binds) {
+            Bind.call(self, config.binds[i]);
         }
     };
 });
+
