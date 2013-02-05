@@ -49,7 +49,7 @@ define(["github/adioo/bind/v0.2.1/bind"], function(Bind) {
                 }
                 else {
                     
-                    href = this.ok + "/core/getFile" + (config.css[i][0] == "/" ? "" : "/") + config.css[i]
+                    href = "/" + this.ok + "/core/getFile" + (config.css[i][0] == "/" ? "" : "/") + config.css[i]
                 }
                 
                 // create link and append it to the DOM
