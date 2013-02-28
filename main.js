@@ -94,6 +94,10 @@ define(["github/adioo/bind/v0.2.1/bind"], function(Bind) {
         for (var i in config.binds) {
             Bind.call(self, config.binds[i]);
         }
+        
+        if (typeof this.onload === 'function') {
+            this.onload();
+        }
     };
 });
 
