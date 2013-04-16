@@ -4,6 +4,6 @@
     "name": "layout",
     "main": "main.js",
     "dependencies": {
-        "github/adioo/bind": "v0.2.1"
+        "github/adioo/bind": "v0.2.5"
     }
 }

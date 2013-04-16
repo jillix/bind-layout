@@ -13,7 +13,7 @@ config = {
 */
 "use strict";
 
-define(["github/adioo/bind/v0.2.1/bind"], function(Bind) {
+define(["github/adioo/bind/v0.2.5/bind"], function(Bind) {
 
     // a recursive function until a module
     function tryNextModule(miids, index, container) {
