@@ -2,8 +2,9 @@
     "source": "github",
     "owner": "adioo",
     "name": "layout",
-    "main": "main.js",
     "dependencies": {
-        "github/adioo/bind": "v0.2.5"
+        "/main.js",
+        "http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js",
+        "github/adioo/bind/dev"
     }
 }
