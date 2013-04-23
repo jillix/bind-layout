@@ -20,42 +20,6 @@ module.exports = function (config) {
 
     var target = this && this.dom ? this.dom : document;
 
-    // load css
-    if (config.css) {
-
-        // get head reference
-        var head = document.getElementsByTagName('head')[0];
-
-        for (var i in config.css) {
-
-            var href;
-
-            if (config.css[i].indexOf('http') > -1) {
-
-                href = config.css[i];
-            }
-            else {
-
-                href = '/' + this.ok + '/core/getFile' + (config.css[i][0] == '/' ? '' : '/') + config.css[i]
-            }
-
-            // create link and append it to the DOM
-            var link = document.createElement('link');
-            var attributes = {
-                    rel:    'stylesheet',
-                    type:   'text/css',
-                    href:   href
-                };
-
-            for (var name in attributes) {
-
-                link.setAttribute(name, attributes[name]);
-            }
-
-            head.appendChild(link);
-        }
-    }
-
     // load modules
     for (var selector in config.modules) {
 
