@@ -5,6 +5,6 @@
     "dependencies": [
         "/main.js",
         "http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js",
-        "github/adioo/bind/v0.3.0"
+        "github/jillix/bind/v0.1.0"
     ]
 }
