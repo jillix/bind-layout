@@ -1,6 +1,6 @@
 'use strict';
 
-var Bind = require('github/adioo/bind');
+var Bind = require('github/jillix/bind');
 
 // a recursive function until a module
 function tryNextModule (miids, index, container) {
