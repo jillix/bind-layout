@@ -46,8 +46,8 @@ module.exports = function (config) {
         Bind.call(self, config.binds[i]);
     }
 
-    if (typeof this.onload === 'function') {
-        this.onload();
+    if (typeof window[config.onInitEnd] === 'function') {
+        window[config.onInitEnd].apply(self);
     }
 };
 
