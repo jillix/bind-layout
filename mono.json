@@ -3,7 +3,7 @@
     "owner": "jillix",
     "name": "bind-layout",
     "dependencies": [
-        "/main.js",
+        "/layout.js",
         "http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js",
         "github/jillix/bind/v0.1.0"
     ]

@@ -18,7 +18,8 @@ function tryNextModule (miids, index, container) {
 
 module.exports = function (config) {
 
-    var target = this && this.dom ? this.dom : document;
+    var self = this;
+    var target = self && self.dom ? self.dom : document;
 
     // load modules
     for (var selector in config.modules) {
