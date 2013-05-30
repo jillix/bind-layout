@@ -17,7 +17,7 @@ function tryNextModule (miids, index, container, dataContext) {
     });
 }
 
-module.exports = function (config) {
+module.exports = function (config, dataContext) {
 
     var self = this;
     var target = self && self.dom ? self.dom : document;
@@ -32,7 +32,7 @@ module.exports = function (config) {
             var container = target.querySelector('#' + selector);
 
             if (typeof modules === 'string') {
-                M(container, modules);
+                M(container, modules, dataCtx);
             }
             // assuming an array
             else if (modules.length) {
@@ -42,9 +42,22 @@ module.exports = function (config) {
         }
     }
 
+    function removeLoadedModules () {
+    
+        for (var selector in config.modules) {
+
+            var container = target.querySelector("#" + config.modules[selector]);
+            $(container).remove();
+        }
+    }
+
     loadModules(dataContext);
 
+    // TODO Only two arguments (arrays):
+    //      1. Dynamic arguments
+    //      2. Configured arguments (from descriptor)
     self.reload = function (dataCtx) {
+        removeLoadedModules();
         loadModules(dataCtx);
     };
 
@@ -62,4 +75,3 @@ module.exports = function (config) {
         window[config.onInitEnd].apply(self);
     }
 };
-
