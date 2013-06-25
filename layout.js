@@ -53,18 +53,31 @@ module.exports = function (config, dataContext) {
 
     loadModules(dataContext);
 
-    // TODO Only two arguments (arrays):
-    //      1. Dynamic arguments
-    //      2. Configured arguments (from descriptor)
-    self.reload = function (dataCtx) {
-        removeLoadedModules();
-        loadModules(dataCtx);
-    };
-
     // set document title
     if (config.title) {
         document.title = config.title;
     }
+
+/***********************************************/
+/* Module functions TODO find another solution */
+/***********************************************/
+
+    // TODO Only two arguments (arrays):
+    //      1. Dynamic arguments
+    //      2. Configured arguments (from descriptor)
+    this.reload = function (dataCtx) {
+        removeLoadedModules();
+        loadModules(dataCtx);
+    };
+
+    this.show = function () {
+        $(self.dom).parent().show();
+    }
+
+    this.hide = function () {
+        $(self.dom).parent().hide();
+    }
+/***********************************************/
 
     // run the binds
     for (var i in config.binds) {
@@ -75,3 +88,4 @@ module.exports = function (config, dataContext) {
         window[config.onInitEnd].apply(self);
     }
 };
+
