@@ -6,9 +6,9 @@ This ia a layout module for the Mono web framework.
 Configuration
 -------------
 
-Besides the standard Mono module configuration options ('html', 'css', 'scripts'), the extra configuration options for this module are:
+Besides the standard Mono module configuration options (`html`, `css`, `scripts`), the extra configuration options for this module are:
 
-```
+```json
 {
     "title": "Test Title",
 
