@@ -4,10 +4,10 @@ var Bind = require('github/jillix/bind');
 var Events = require('github/jillix/events');
 
 // a recursive function until a module
-function tryNextModule (miids, index, container, dataContext) {
+function tryNextModule (miids, index, container, dataContext, self) {
     // stop when no more modules
     if (!miids[index]) {
-        return;
+        return self.emit("ready");
     }
     // otherwise go and try to load the module
     M(container, miids[index], dataContext, function(err, module) {
@@ -21,7 +21,7 @@ module.exports = function (config, dataContext) {
 
     var self = this;
     var target = self && self.dom ? self.dom : document;
-    
+
     Events.call(self, config);
 
     function loadModules (dataCtx) {
@@ -32,18 +32,20 @@ module.exports = function (config, dataContext) {
             var container = target.querySelector('#' + selector);
 
             if (typeof modules === 'string') {
-                M(container, modules, dataCtx);
+                M(container, modules, dataCtx, function () {
+                    self.emit("ready");
+                });
             }
             // assuming an array
             else if (modules.length) {
                 // start finding the first accessible miid in the module array
-                tryNextModule(modules, 0, container, dataCtx);
+                tryNextModule(modules, 0, container, dataCtx, self);
             }
         }
     }
 
     function removeLoadedModules () {
-    
+
         for (var selector in config.modules) {
 
             var container = target.querySelector("#" + config.modules[selector]);
@@ -88,4 +90,3 @@ module.exports = function (config, dataContext) {
         window[config.onInitEnd].apply(self);
     }
 };
-
