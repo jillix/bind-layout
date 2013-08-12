@@ -42,6 +42,10 @@ module.exports = function (config, dataContext) {
                 tryNextModule(modules, 0, container, dataCtx, self);
             }
         }
+
+        if (!config.modules || !config.modules.length) {
+            self.emit("ready");
+        }
     }
 
     function removeLoadedModules () {

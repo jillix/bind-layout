@@ -50,3 +50,26 @@ The module emits the following events:
      </tr>
    </tbody>
  </table>
+
+# Change Log
+
+### dev
+Nothing yet.
+
+### v0.1.6
+  - Fix major issue: if `config.modules` does not exist, emit ready.
+
+### v0.1.5
+    TODO
+
+### v0.1.4
+    TODO
+
+### v0.1.3
+    TODO
+
+### v0.1.2
+    TODO
+
+### v0.1.1
+  - Renamed main.js into layout.js
