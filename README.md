@@ -56,8 +56,12 @@ The module emits the following events:
 ### dev
 Nothing yet.
 
+### v0.1.7
+ - Updated Bind to the `v0.1.2` version
+ - Updated Events to the `v0.1.2` version
+
 ### v0.1.6
-  - Fix major issue: if `config.modules` does not exist, emit ready.
+ - Fix major issue: if `config.modules` does not exist, emit `ready`.
 
 ### v0.1.5
     TODO
