@@ -56,8 +56,12 @@ The module emits the following events:
 ### dev
 Nothing yet.
 
+### v0.1.9
+ - Updated Events to `v0.1.3`
+
 ### v0.1.8
- - Updated Bind to v0.1.3`
+ - Updated Bind to `v0.1.3`
+
 ### v0.1.7
  - Updated Bind to the `v0.1.2` version
  - Updated Events to the `v0.1.2` version
