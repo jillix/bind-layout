@@ -27,7 +27,7 @@ module.exports = function (config, dataContext) {
     function loadModules (dataCtx) {
         // load modules
         for (var selector in config.modules) {
-            if (!config.modules.hasOwnProperty(selector)) return;
+            if (!config.modules.hasOwnProperty(selector)) continue;
             
             var modules = config.modules[selector];
             var container = target.querySelector('#' + selector);
@@ -52,7 +52,7 @@ module.exports = function (config, dataContext) {
     function removeLoadedModules () {
 
         for (var selector in config.modules) {
-            if (!config.modules.hasOwnProperty(selector)) return;
+            if (!config.modules.hasOwnProperty(selector)) continue;
 
             var container = target.querySelector("#" + config.modules[selector]);
             $(container).remove();
@@ -88,12 +88,14 @@ module.exports = function (config, dataContext) {
 /***********************************************/
 
     // run the binds
-    for (var i in config.binds) {
-        if (!config.hasOwnProperty(i)) return;
-        Bind.call(self, config.binds[i]);
+    if (config.binds) {
+        for (var i = 0; i < config.binds.length; ++i) {
+            Bind.call(self, config.binds[i]);
+        }
     }
 
     if (typeof window[config.onInitEnd] === 'function') {
         window[config.onInitEnd].apply(self);
     }
 };
+
