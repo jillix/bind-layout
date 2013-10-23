@@ -56,11 +56,15 @@ The module emits the following events:
 ### dev
 Nothing yet.
 
+### v0.2.1
+ - Updated Events to `v0.1.7`
+
 ### v0.2.0
  - Updated Bind to `v0.2.0`
+ - Fixed broken `hasOwnProperty` test added in `v0.1.11` (`return` instead of `continue`)
 
 ### v0.1.11
- - added "if (!obj.hasOwnProperty(key)) return;" to object for loops
+ - added `if (!obj.hasOwnProperty(key)) return;` to object for loops
 
 ### v0.1.10
  - Updated Events to `v0.1.4`
