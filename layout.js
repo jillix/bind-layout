@@ -1,3 +1,4 @@
+M.wrap('github/jillix/bind-layout/v0.2.2/layout.js', function (require, module, exports) {
 'use strict';
 
 var Bind = require('github/jillix/bind');
@@ -28,7 +29,7 @@ module.exports = function (config, dataContext) {
         // load modules
         for (var selector in config.modules) {
             if (!config.modules.hasOwnProperty(selector)) continue;
-            
+
             var modules = config.modules[selector];
             var container = target.querySelector('#' + selector);
 
@@ -66,36 +67,13 @@ module.exports = function (config, dataContext) {
         document.title = config.title;
     }
 
-/***********************************************/
-/* Module functions TODO find another solution */
-/***********************************************/
-
-    // TODO Only two arguments (arrays):
-    //      1. Dynamic arguments
-    //      2. Configured arguments (from descriptor)
-    this.reload = function (dataCtx) {
-        removeLoadedModules();
-        loadModules(dataCtx);
-    };
-
-    this.show = function () {
-        $(self.dom).parent().show();
-    }
-
-    this.hide = function () {
-        $(self.dom).parent().hide();
-    }
-/***********************************************/
-
     // run the binds
     if (config.binds) {
         for (var i = 0; i < config.binds.length; ++i) {
             Bind.call(self, config.binds[i]);
         }
     }
-
-    if (typeof window[config.onInitEnd] === 'function') {
-        window[config.onInitEnd].apply(self);
-    }
 };
 
+
+return module; });
