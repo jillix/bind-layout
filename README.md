@@ -56,8 +56,9 @@ The module emits the following events:
 ### dev
 Nothing yet.
 
-### v0.2.3
- - `Events v0.1.10` and `Bind v0.2.2`
+### v0.2.5
+ - Removed compromised versions `v0.2.3` and `v0.2.4`
+ - `Events v0.1.11` and `Bind v0.2.2`
  - Deprecated `hide`, `show`, `reload` functions
 
 ### v0.2.2

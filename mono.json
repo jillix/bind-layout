@@ -5,6 +5,6 @@
   , "dependencies": [
         "/layout.js"
       , "github/jillix/bind/v0.2.2"
-      , "github/jillix/events/v0.1.10"
+      , "github/jillix/events/v0.1.11"
     ]
 }
