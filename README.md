@@ -56,6 +56,10 @@ The module emits the following events:
 ### dev
 Nothing yet.
 
+### v0.3.0
+ - i18n for document title
+ - Updated deps
+
 ### v0.2.5
  - Removed compromised versions `v0.2.3` and `v0.2.4`
  - `Events v0.1.11` and `Bind v0.2.2`
