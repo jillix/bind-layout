@@ -1,4 +1,3 @@
-M.wrap('github/jillix/bind-layout/v0.2.2/layout.js', function (require, module, exports) {
 'use strict';
 
 var Bind = require('github/jillix/bind');
@@ -64,7 +63,7 @@ module.exports = function (config, dataContext) {
 
     // set document title
     if (config.title) {
-        document.title = config.title;
+        document.title = config.title[M.getLocale()] || config.title;
     }
 
     // run the binds
@@ -74,6 +73,3 @@ module.exports = function (config, dataContext) {
         }
     }
 };
-
-
-return module; });
