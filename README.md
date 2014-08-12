@@ -56,6 +56,9 @@ The module emits the following events:
 ### dev
 Nothing yet.
 
+### v0.3.1
+ - Updated to Bind `v0.3.1`
+
 ### v0.3.0
  - i18n for document title
  - Updated deps
