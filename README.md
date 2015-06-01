@@ -53,8 +53,9 @@ The module emits the following events:
 
 # Change Log
 
-### dev
-Nothing yet.
+### v0.4.0
+ - transferred module to the new jxMono organization
+ - updated Bind to `v0.4.0`, Events to `v0.4.0`
 
 ### v0.3.1
  - Updated to Bind `v0.3.1`
