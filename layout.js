@@ -1,7 +1,7 @@
 'use strict';
 
-var Bind = require('github/jillix/bind');
-var Events = require('github/jillix/events');
+var Bind = require('github/jxmono/bind');
+var Events = require('github/jxmono/events');
 
 // a recursive function until a module
 function tryNextModule (miids, index, container, dataContext, self) {
